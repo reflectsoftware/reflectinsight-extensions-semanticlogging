@@ -18,7 +18,48 @@ The benefits to using the Insight Extensions is that you can easily and quickly 
 
 ## Getting Started
 
-Coming soon...
+```powershell
+Install-Package ReflectSoftware.Insight.Extensions.SemanticLogging
+```
+
+Then in your app.config or web.config file, add the following configuration sections:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="insightSettings" type="ReflectSoftware.Insight.ConfigurationHandler,ReflectSoftware.Insight" />
+  </configSections>
+
+  <insightSettings>
+    <baseSettings>
+      <configChange enabled="true" />
+      <enable state="all" />
+      <propagateException enabled="false" />
+      <global category="ReflectInsight" />
+      <exceptionEventTracker time="20" />
+    </baseSettings>
+    
+    <listenerGroups active="Release">
+      <group name="Release" enabled="true" maskIdentities="false">
+        <destinations>
+          <destination name="Viewer" enabled="true" filter="" details="Viewer" />
+        </destinations>
+      </group>
+    </listenerGroups>
+    
+    <logManager default="semantic">
+      <instance name="semantic" category="Semantic" />
+    </logManager>
+  </insightSettings>
+  
+  <startup> 
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+</configuration>
+```
+
+Additional configuration details for the ReflectSoftware.Insight.Extensions.SemanticLogging logging extension can be found [here](https://reflectsoftware.atlassian.net/wiki/pages/viewpage.action?pageId=5570590).
 
 ## Additional Resources
 
