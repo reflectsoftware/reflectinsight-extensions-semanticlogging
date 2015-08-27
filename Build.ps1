@@ -1,6 +1,6 @@
 param(
     [String] $majorMinor = "5.5",  # 5.5
-    [String] $patch = "0",         # $env:APPVEYOR_BUILD_VERSION
+    [String] $patch = "1",         # $env:APPVEYOR_BUILD_VERSION
     [String] $customLogger = "",   # C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll
     [Switch] $notouch,
     [String] $project = "ReflectSoftware.Insight.Extensions.SemanticLogging"
@@ -39,14 +39,22 @@ function Invoke-NuGetPackProj($csproj)
 
 function Invoke-NuGetPackSpec($nuspec, $version)
 {
-    nuget pack $nuspec -Version $version -OutputDirectory ..\..\
+    nuget pack $nuspec -Version $version -OutputDirectory ..\
 }
 
 function Invoke-NuGetPack($version)
 {
-    ls src/**/*.csproj |
+    #ls src/**/*.csproj |
+    #    Where-Object { -not ($_.Name -like "*net40*") } |
+    #    ForEach-Object { Invoke-NuGetPackProj $_ }
+		
+		ls src/**/*.csproj |
         Where-Object { -not ($_.Name -like "*net40*") } |
         ForEach-Object { Invoke-NuGetPackProj $_ }
+
+    pushd .\src
+    Invoke-NuGetPackSpec "ReflectSoftware.Insight.Extensions.SemanticLogging.nuspec" $version
+    popd
 }
 
 function Invoke-Build($project, $majorMinor, $patch, $customLogger, $notouch)
