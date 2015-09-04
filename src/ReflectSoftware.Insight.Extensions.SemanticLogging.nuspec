@@ -20,7 +20,7 @@ You can view your EntLib messages in realtime, in a rich viewer that allows you 
         <summary>ReflectInsight EnterpriseLibrary Semantic Logging extention (Sink) makes it easy to integrate ReflectInsight into your existing application logging infrastructure and leverage the power of the Reflect</summary>
         <releaseNotes></releaseNotes>
         <copyright>© 2015 ReflectSoftware Inc.</copyright>
-        <tags>entlib entlib6 slab enterprise library ETW semantic logging EventSource event listener structured strongly-typed block extensions appender log tracing RabbitMQ ReflectInsight</tags>
+        <tags>reflectinsight logging log logfiles events ETW semantic entlib6 EventSource exception handling structured tracing trace debug diagnostic Enterprise Library LOB lab</tags>
         <dependencies>
             <dependency id="EnterpriseLibrary.SemanticLogging" version="2.0.1406.1" />
             <dependency id="ReflectSoftware.Insight" version="5.5.1" />
