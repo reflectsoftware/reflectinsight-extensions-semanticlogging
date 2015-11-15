@@ -8,7 +8,7 @@
         <owners>ReflectSoftware Inc.</owners>
         <licenseUrl>https://github.com/reflectsoftware/reflectinsight-extensions-semanticlogging/blob/master/LICENSE.md</licenseUrl>
         <projectUrl>https://github.com/reflectsoftware/reflectinsight-extensions-semanticlogging</projectUrl>
-        <iconUrl>http://reflectsoftware.com/images/ri_logo_green.ico</iconUrl>
+        <iconUrl>http://reflectsoftware.com/images/ReflectInsight-Element-256.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>We've added support for the Enterprise Library Semantic Logging (ETW). This allows you to leverage your current investment in EntLib, but leverage the power and flexibility of the ReflectInsight Viewer. 
 
