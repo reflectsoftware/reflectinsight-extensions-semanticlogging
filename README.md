@@ -4,7 +4,6 @@
 [![License](https://img.shields.io/:license-MS--PL-blue.svg)](https://github.com/reflectsoftware/reflectinsight-extensions-semanticloging/license.md)
 [![Release](https://img.shields.io/github/release/reflectsoftware/reflectinsight-extensions-semanticlogging.svg)](https://github.com/reflectsoftware/reflectinsight-extensions-semanticlogging/releases/latest)
 [![NuGet Version](http://img.shields.io/nuget/v/reflectsoftware.insight.extensions.semanticlogging.svg?style=flat)](http://www.nuget.org/packages/ReflectSoftware.Insight.Extensions.semanticlogging/)
-[![NuGet](https://img.shields.io/nuget/dt/reflectsoftware.insight.extensions.semanticlogging.svg)](http://www.nuget.org/packages/ReflectSoftware.Insight.Extensions.SemanticLogging/)
 [![Stars](https://img.shields.io/github/stars/reflectsoftware/reflectinsight-extensions-semanticlogging.svg)](https://github.com/reflectsoftware/reflectinsight-extensions-semanticlogging/stargazers)
 
 **Package** - [ReflectSoftware.Insight.Extensions.semanticlogging](http://www.nuget.org/packages/ReflectSoftware.Insight.Extensions.semanticlogging/) | **Platforms** - .NET 4.5
