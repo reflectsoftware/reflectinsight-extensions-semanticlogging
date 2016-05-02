@@ -1,5 +1,8 @@
 ## Change Log ##
 
+#### Version 5.6.0 ####
+ * Updated extension to use ReflectInsight 5.6.0 version
+
 #### Version 5.5.1 ####
  * Bug fixes for packages improperly being downloaded. RabbitMQ is now a nuget dependency.
  
