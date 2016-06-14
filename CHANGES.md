@@ -1,5 +1,9 @@
 ## Change Log ##
 
+#### Version 5.6.1 ####
+ * Updated to ReflectInsight 5.6.1.2
+ * Updated to .NET 4.5.1
+
 #### Version 5.6.0 ####
  * Updated extension to use ReflectInsight 5.6.0 version
 

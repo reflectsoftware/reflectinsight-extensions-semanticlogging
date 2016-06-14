@@ -10,9 +10,9 @@
         <projectUrl>https://github.com/reflectsoftware/reflectinsight-extensions-semanticlogging</projectUrl>
         <iconUrl>http://reflectsoftware.com/images/ReflectInsight-Element-256.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>We've added support for the Enterprise Library Semantic Logging (ETW). This allows you to leverage your current investment in EntLib, but leverage the power and flexibility of the ReflectInsight Viewer. 
+        <description>We've added support for the Enterprise Library Semantic Logging (ETW). This allows you to leverage your current investment in EntLib, but leverage the power and flexibility of the ReflectInsight Viewer.
 
-In order to use this extension you must have the ReflectInsight Viewer installed. Download and install the ReflectInsight Viewer from this location: 
+In order to use this extension you must have the ReflectInsight Viewer installed. Download and install the ReflectInsight Viewer from this location:
 
 http://www.ReflectSoftware.com/Public/Download.aspx
 
@@ -23,7 +23,7 @@ You can view your EntLib messages in realtime, in a rich viewer that allows you 
         <tags>reflectinsight logging log logfiles events ETW semantic entlib6 EventSource exception handling structured tracing trace debug diagnostic Enterprise Library LOB lab</tags>
         <dependencies>
             <dependency id="EnterpriseLibrary.SemanticLogging" version="2.0.1406.1" />
-            <dependency id="ReflectSoftware.Insight" version="5.6.0" />
+            <dependency id="ReflectSoftware.Insight" version="5.6.1.2" />
         </dependencies>
         <references>
             <reference file="ReflectSoftware.Insight.Extensions.SemanticLogging.dll" />
