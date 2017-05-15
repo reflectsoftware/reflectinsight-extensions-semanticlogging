@@ -1,5 +1,8 @@
 ## Change Log ##
 
+#### Version 5.7.0 ####
+ * Updated to ReflectInsight v5.7.0.0
+
 #### Version 5.6.1 ####
  * Updated to ReflectInsight 5.6.1.2
  * Updated to .NET 4.5.1

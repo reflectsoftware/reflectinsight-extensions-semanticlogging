@@ -15,17 +15,25 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
         private static readonly String DetailsLine;
 
         private Boolean Disposed { get; set; }
-        private ReflectInsight RIInstance { get; set; }
+        private IReflectInsight RIInstance { get; set; }
         private String InstanceName { get; set; }
         private String MessagePattern { get; set; }
         private String TimeFormat { get; set; }
-                
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Initializes the <see cref="RIEventSink"/> class.
+        /// </summary>
         static RIEventSink()
         {
             DetailsLine = String.Format("{0,40}", String.Empty).Replace(" ", "-");
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RIEventSink"/> class.
+        /// </summary>
+        /// <param name="instanceName">Name of the instance.</param>
+        /// <param name="messagePattern">The message pattern.</param>
+        /// <param name="timeFormat">The time format.</param>
         public RIEventSink(String instanceName, String messagePattern, String timeFormat)
         {
             Disposed = false;
@@ -36,20 +44,35 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
             RIEventManager.OnServiceConfigChange += OnConfigChange;
             OnConfigChange();
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RIEventSink"/> class.
+        /// </summary>
+        /// <param name="instanceName">Name of the instance.</param>
+        /// <param name="messagePattern">The message pattern.</param>
         public RIEventSink(String instanceName, String messagePattern): this(instanceName, messagePattern, null)
         {
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RIEventSink"/> class.
+        /// </summary>
+        /// <param name="instanceName">Name of the instance.</param>
         public RIEventSink(String instanceName): this(instanceName, null, null)
         {
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="RIEventSink"/> class.
+        /// </summary>
         ~RIEventSink()
         {
             Dispose();
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             lock (this)
@@ -62,12 +85,18 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
                 }
             }
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Notifies the observer that the provider has finished sending push-based notifications.
+        /// </summary>
         public void OnCompleted()
         {
             Dispose();
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Called when [configuration change].
+        /// </summary>
         private void OnConfigChange()
         {
             try
@@ -82,7 +111,12 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
                 OnError(ex);
             }
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Payloads the format.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <returns></returns>
         private static String PayloadFormat(EventEntry entry)
         {
             StringBuilder sb = new StringBuilder();
@@ -94,7 +128,12 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
 
             return sb.ToString();
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Messages the format.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <returns></returns>
         private String MessageFormat(EventEntry entry)
         {
             StringBuilder sb = new StringBuilder(MessagePattern);
@@ -112,7 +151,12 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
 
             return sb.ToString();
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Detailses the format.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <returns></returns>
         private String DetailsFormat(EventEntry entry)
         {
             StringBuilder sb = new StringBuilder();
@@ -133,12 +177,22 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
 
             return sb.ToString();
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Sends the message.
+        /// </summary>
+        /// <param name="mType">Type of the m.</param>
+        /// <param name="eventEntry">The event entry.</param>
+        /// <param name="details">The details.</param>
         private void SendMessage(MessageType mType, EventEntry eventEntry, String details)
         {
             RIInstance.Send(mType, MessageFormat(eventEntry), details);
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Called when [next].
+        /// </summary>
+        /// <param name="entry">The entry.</param>
         public void OnNext(EventEntry entry)
         {
             if (entry == null)
@@ -176,7 +230,11 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
                 OnError(e);
             }            
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Notifies the observer that the provider has experienced an error condition.
+        /// </summary>
+        /// <param name="error">An object that provides additional information about the error.</param>
         public void OnError(Exception error)
         {            
             SemanticLoggingEventSource.Log.CustomSinkUnhandledFault(error.ToString());
@@ -185,36 +243,72 @@ namespace ReflectSoftware.Insight.Extensions.SemanticLogging
 
     public static class RIEventLog
     {
-        //---------------------------------------------------------------------
+        /// <summary>
+        /// Logs to reflect insight.
+        /// </summary>
+        /// <param name="eventStream">The event stream.</param>
+        /// <param name="instanceName">Name of the instance.</param>
+        /// <param name="messagePattern">The message pattern.</param>
+        /// <param name="timeFormat">The time format.</param>
+        /// <returns></returns>
         public static SinkSubscription<RIEventSink> LogToReflectInsight(this IObservable<EventEntry> eventStream, String instanceName = null, String messagePattern = null, String timeFormat = null)
         {
             var sink = new RIEventSink(instanceName, messagePattern, timeFormat);
             var subscription = eventStream.Subscribe(sink);
             return new SinkSubscription<RIEventSink>(subscription, sink);
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Logs to reflect insight.
+        /// </summary>
+        /// <param name="eventStream">The event stream.</param>
+        /// <param name="instanceName">Name of the instance.</param>
+        /// <param name="messagePattern">The message pattern.</param>
+        /// <returns></returns>
         public static SinkSubscription<RIEventSink> LogToReflectInsight(this IObservable<EventEntry> eventStream, String instanceName, String messagePattern)
         {
             return LogToReflectInsight(eventStream, instanceName, messagePattern, null);
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Logs to reflect insight.
+        /// </summary>
+        /// <param name="eventStream">The event stream.</param>
+        /// <param name="instanceName">Name of the instance.</param>
+        /// <returns></returns>
         public static SinkSubscription<RIEventSink> LogToReflectInsight(this IObservable<EventEntry> eventStream, String instanceName)
         {
             return LogToReflectInsight(eventStream, instanceName, null, null);
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Creates the listener.
+        /// </summary>
+        /// <param name="instanceName">Name of the instance.</param>
+        /// <param name="messagePattern">The message pattern.</param>
+        /// <param name="timeFormat">The time format.</param>
+        /// <returns></returns>
         public static EventListener CreateListener(String instanceName, String messagePattern = null, String timeFormat = null)
         {
             var listener = new ObservableEventListener();
             listener.LogToReflectInsight(instanceName, messagePattern, timeFormat);
             return listener;
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Creates the listener.
+        /// </summary>
+        /// <param name="instanceName">Name of the instance.</param>
+        /// <returns></returns>
         public static EventListener CreateListener(String instanceName)
         {
             return CreateListener(instanceName, null, null);
         }
-        //---------------------------------------------------------------------
+
+        /// <summary>
+        /// Creates the listener.
+        /// </summary>
+        /// <returns></returns>
         public static EventListener CreateListener()
         {
             return CreateListener(null, null, null);
