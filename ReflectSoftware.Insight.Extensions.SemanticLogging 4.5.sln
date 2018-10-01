@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{5083DB16-D99D-48E4-8B72-90F9AFD54F7C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{5083DB16-D99D-48E4-8B72-90F9AFD54F7C}"
 	ProjectSection(SolutionItems) = preProject
 		Build.ps1 = Build.ps1
 		CHANGES.md = CHANGES.md
@@ -18,6 +18,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{01632575-F57
 		src\ReflectSoftware.Insight.Extensions.SemanticLogging.nuspec = src\ReflectSoftware.Insight.Extensions.SemanticLogging.nuspec
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{FD38DDD2-DA21-4D29-8FC1-E34F5440A21C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{87145654-339D-4A5C-B2E0-CAE37DC1E2DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectInsight.Extensions.SemanticLogging.Sample", "Sample\ReflectInsight.Extensions.SemanticLogging.Sample\ReflectInsight.Extensions.SemanticLogging.Sample.csproj", "{583F4692-82BF-4BA0-B0A0-85C0B3FE933B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,11 +34,20 @@ Global
 		{3B1F1A11-2CDA-46B8-9233-9C7D12D6BCFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B1F1A11-2CDA-46B8-9233-9C7D12D6BCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B1F1A11-2CDA-46B8-9233-9C7D12D6BCFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{583F4692-82BF-4BA0-B0A0-85C0B3FE933B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{583F4692-82BF-4BA0-B0A0-85C0B3FE933B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{583F4692-82BF-4BA0-B0A0-85C0B3FE933B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{583F4692-82BF-4BA0-B0A0-85C0B3FE933B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{3B1F1A11-2CDA-46B8-9233-9C7D12D6BCFA} = {87145654-339D-4A5C-B2E0-CAE37DC1E2DB}
 		{01632575-F573-4A2D-AD76-FC49B3A4895C} = {5083DB16-D99D-48E4-8B72-90F9AFD54F7C}
+		{583F4692-82BF-4BA0-B0A0-85C0B3FE933B} = {FD38DDD2-DA21-4D29-8FC1-E34F5440A21C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34A6EC45-C8C4-41C6-A176-94A1B4851EB0}
 	EndGlobalSection
 EndGlobal
